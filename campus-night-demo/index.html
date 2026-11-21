@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101a2b">
+  <title>凌晨三点，校园还亮着</title>
+  <link rel="stylesheet" href="./game.css">
+  <script type="module" src="./game.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div class="branding">
+        <div class="brand-mark" aria-hidden="true"><i></i></div>
+        <div><span class="brand-name">校园夜班</span><span class="brand-en">NIGHT GROUNDSKEEPER</span></div>
+      </div>
+      <div class="mast-actions">
+        <button type="button" id="sound" class="quiet" aria-pressed="false">声音关</button>
+        <button type="button" id="pause" class="quiet" disabled>暂停</button>
+      </div>
+    </header>
+    <div class="dashboard">
+      <section class="field" aria-label="校园操场">
+        <canvas id="board" width="1008" height="612" aria-label="俯视角游戏地图"></canvas>
+        <div id="map-labels" class="map-labels" aria-hidden="true"></div>
+        <div id="map-target" class="map-target" hidden aria-hidden="true"><i></i><span></span></div>
+        <div class="wave-action"><button type="button" id="launch-wave" class="primary" hidden>准备好了，开始第二波</button></div>
+        <div class="intro" id="intro">
+          <div class="intro-content">
+            <p class="eyebrow"><span></span> 03:00 AM / 校园操场</p>
+            <h1>凌晨三点，<br><em>校园还亮着</em></h1>
+            <p class="intro-description">割开杂草，接通路灯。<br>怪物经过的草径，还会重新长草。</p>
+            <button type="button" id="start" class="primary">开始夜班</button>
+            <p class="key-guide"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>或方向键移动 · 自动攻击</span></p>
+            <p class="touch-guide">拖动操场移动 · 自动攻击</p>
+          </div>
+        </div>
+        <div id="joystick" class="joystick" hidden aria-hidden="true"><i></i></div>
+        <div id="notice" class="notice" hidden role="status"></div>
+      </section>
+      <aside class="console" aria-label="任务和状态">
+        <div class="console-top"><span class="label">夜班剩余</span><span id="clock" class="clock">12:00</span></div>
+        <div class="health-block"><span class="label">体力</span><div id="health" class="health" aria-label="体力 5 / 5"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <section class="mission">
+          <span class="label">当前任务</span>
+          <h2 id="mission-title">点亮操场</h2>
+          <p id="mission-text">从绿色配电箱出发，割出一条通往第一盏灯的路。</p>
+          <div id="hold" class="hold" hidden><div class="hold-label"><span>稳定供电</span><span id="hold-text">0 / 15 秒</span></div><progress id="hold-bar" max="15" value="0"></progress></div>
+        </section>
+        <div class="lamps" aria-label="路灯状态">
+          <div class="lamp current" id="lamp-0"><span>01</span><strong>操场灯</strong><small>待供电</small></div>
+          <div class="lamp" id="lamp-1"><span>02</span><strong>看台灯</strong><small>未开放</small></div>
+          <div class="lamp" id="lamp-2"><span>03</span><strong>球场灯</strong><small>未开放</small></div>
+        </div>
+      </aside>
+    </div>
+    <footer class="footer"><span><i class="legend power"></i>供电草径</span><span><i class="legend sprout"></i>怪物足迹</span><span><i class="legend danger"></i>断路预警</span><span class="footer-controls">移动时自动割草和攻击</span></footer>
+  </main>
+  <dialog id="modal" aria-labelledby="modal-title">
+    <div class="modal-body">
+      <p id="modal-label" class="label"></p>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </dialog>
+</body>
+</html>
